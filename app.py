@@ -7,26 +7,28 @@ import pdfkit
 from mail import Mail
 import constants
 
+# input constants
+COMPANY = constants.COMPANY
+
+EMPLOYEE_INFO_EXCEL_PATH = constants.EMPLOYEE_INFO_EXCEL_PATH
+SALARY_EXCEL_PATH = constants.SALARY_EXCEL_PATH
+
+TEMPLATE_PATH = constants.TEMPLATE_PATH
+
+OUTPUT_DIR = constants.OUTPUT_DIR
+
+YEAR = constants.YEAR
+
 
 def run_app():
-    # input constants
-    COMPANY = constants.COMPANY
-
-    EMPLOYEE_INFO_EXCEL_PATH = constants.EMPLOYEE_INFO_EXCEL_PATH
-    SALARY_EXCEL_PATH = constants.SALARY_EXCEL_PATH
-
-    TEMPLATE_PATH = constants.TEMPLATE_PATH
-
-    OUTPUT_DIR = constants.OUTPUT_DIR
-
-    YEAR = constants.YEAR
-
-    #variables
+    # variables
     this_day = date.today()
     this_day_str = f'{this_day.day}.{this_day.month}.{this_day.year}'
 
     months_dict = {1: 'Januar', 2: 'Februar', 3: 'März', 4: 'April', 5: 'Mai', 6: 'Juni',
                    7: 'Juli', 8: 'August', 9: 'September', 10: 'Oktober', 11: 'November', 12: 'Dezember'}
+
+    month_name = ''
 
     sender_list = []
     payment_data = []
@@ -78,7 +80,6 @@ def run_app():
     data_df.fillna(0, inplace=True)
     print(f"Monatsdaten wurden gelesen.")
 
-
     # Template and PDF Funcions
     def html_to_pdf(employee, context_dict):
         print(f"PDF für {employee} wird erstellt...")
@@ -90,7 +91,6 @@ def run_app():
         pdf_file_path = f'{output_pdf_dir}/{employee}_Lohnabrechnung_{month_name}.pdf'
         pdfkit.from_string(template.render(cont), pdf_file_path, options=options)
         return pdf_file_path
-
 
     def create_context(employee):
         employee_df = data_df[employee]
@@ -146,7 +146,6 @@ def run_app():
 
         return context_dict
 
-
     # Create PDFs
     for employee_name in employees_df:
         context = create_context(employee_name)
@@ -155,7 +154,6 @@ def run_app():
                             employees_df[employee_name]['Geschlecht'], pdf_path))
         payment_data.append((employee_name, employees_df[employee_name]['Name'],
                             employees_df[employee_name]['Konto-Nummer'], context['net_salary']))
-
 
     # Send PDFs
     print(":)")
@@ -189,7 +187,6 @@ def run_app():
             mail.send_mail()
 
         print("Alle Mails wurden gesendet!")
-
 
     # TODO: Create csv with Payment-Data
 
