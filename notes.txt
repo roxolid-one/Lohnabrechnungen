@@ -1,0 +1,10 @@
+for use of pdfkit wkhtmltopdf has to be installed:
+    MacOS: brew install Caskroom/cask/wkhtmltopdf
+    Debian/Ubuntu: apt-get install wkhtmltopdf
+    Windows: choco install wkhtmltopdf
+
+
+hellblau im excel (muss mindestens eine "0") haben...also keine leere Zeilen!! (kann man vielleicht noch verbessern)
+
+
+gmail account: enable less secure apps

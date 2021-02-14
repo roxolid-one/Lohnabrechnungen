@@ -1,0 +1,5 @@
+<courtesy> <name>
+Anbei die Lohnabrechnung für <month> <year>.
+Sowohl Abrechnung als auch diese Mail wurden automatisch generiert, darum bin ich froh wenn du diese kurz kontrollierst.
+Vielen Dank und Herzliche Grüsse
+Fabian
